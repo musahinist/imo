@@ -25,6 +25,10 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const HomeView());
     },
+    IdeaFormRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const IdeaFormView());
+    },
     SampleItemListRoute.name: (routeData) {
       final args = routeData.argsAs<SampleItemListRouteArgs>(
           orElse: () => const SampleItemListRouteArgs());
@@ -46,6 +50,7 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/'),
         RouteConfig(HomeRoute.name, path: '/'),
+        RouteConfig(IdeaFormRoute.name, path: '/ideform'),
         RouteConfig(SampleItemListRoute.name, path: '/sample'),
         RouteConfig(SettingsRoute.name, path: '/settings'),
         RouteConfig(SampleItemDetailsRoute.name, path: '/sample_item')
@@ -66,6 +71,14 @@ class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute() : super(HomeRoute.name, path: '/');
 
   static const String name = 'HomeRoute';
+}
+
+/// generated route for
+/// [IdeaFormView]
+class IdeaFormRoute extends PageRouteInfo<void> {
+  const IdeaFormRoute() : super(IdeaFormRoute.name, path: '/ideform');
+
+  static const String name = 'IdeaFormRoute';
 }
 
 /// generated route for

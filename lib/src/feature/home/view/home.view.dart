@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imo/src/feature/auth/bloc/login_bloc.dart';
+import 'package:imo/src/router/router.dart';
 import 'package:reorderable_grid/reorderable_grid.dart';
 
 import '../bloc/home_bloc.dart';
@@ -28,7 +30,7 @@ class _HomeBody extends StatefulWidget {
 
 class _HomeBodyState extends State<_HomeBody> {
   /// create a new list of data
-  final items = List<int>.generate(40, (index) => index);
+  final items = List<int>.generate(4, (index) => index);
 
   /// when the reorder completes remove the list entry from its old position
   /// and insert it at its new index
@@ -47,7 +49,7 @@ class _HomeBodyState extends State<_HomeBody> {
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
-              context.read<LoginBloc>().add(LogOutEvent());
+              context.read<LoginBloc>().add(const LogOutEvent());
             },
           )
         ],
@@ -75,6 +77,13 @@ class _HomeBodyState extends State<_HomeBody> {
             ),
           );
         }).toList(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //  context.read<HomeBloc>().add(const AddItemEvent());
+          context.router.navigate(const IdeaFormRoute());
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
