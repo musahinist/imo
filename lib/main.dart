@@ -21,7 +21,7 @@ void main() async {
           create: (context) => ThemeCubit(),
         ),
         BlocProvider(
-          create: (context) => LoginBloc()..add(LoginEvent()),
+          create: (context) => LoginBloc()..add(const LoginEvent()),
         ),
       ],
       child: MyApp(

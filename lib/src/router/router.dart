@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:imo/src/feature/sample_feature/sample_item.dart';
 
 import '../feature/home/view/home.view.dart';
+import '../feature/home/view/idea_form.view.dart';
 import '../feature/sample_feature/sample_item_details_view.dart';
 import '../feature/sample_feature/sample_item_list_view.dart';
 
@@ -21,6 +22,10 @@ part 'router.gr.dart';
     AutoRoute(
       path: HomeView.routeName,
       page: HomeView,
+    ),
+    AutoRoute(
+      path: IdeaFormView.routeName,
+      page: IdeaFormView,
     ),
     AutoRoute(
       path: SampleItemListView.routeName,
