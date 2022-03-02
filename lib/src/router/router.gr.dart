@@ -21,6 +21,14 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const SplashView());
     },
+    LandingRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const LandingView());
+    },
+    ShortenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const ShortenView());
+    },
     HomeRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const HomeView());
@@ -49,6 +57,8 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/'),
+        RouteConfig(LandingRoute.name, path: '/landing'),
+        RouteConfig(ShortenRoute.name, path: '/shorten'),
         RouteConfig(HomeRoute.name, path: '/'),
         RouteConfig(IdeaFormRoute.name, path: '/ideform'),
         RouteConfig(SampleItemListRoute.name, path: '/sample'),
@@ -63,6 +73,22 @@ class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute() : super(SplashRoute.name, path: '/');
 
   static const String name = 'SplashRoute';
+}
+
+/// generated route for
+/// [LandingView]
+class LandingRoute extends PageRouteInfo<void> {
+  const LandingRoute() : super(LandingRoute.name, path: '/landing');
+
+  static const String name = 'LandingRoute';
+}
+
+/// generated route for
+/// [ShortenView]
+class ShortenRoute extends PageRouteInfo<void> {
+  const ShortenRoute() : super(ShortenRoute.name, path: '/shorten');
+
+  static const String name = 'ShortenRoute';
 }
 
 /// generated route for

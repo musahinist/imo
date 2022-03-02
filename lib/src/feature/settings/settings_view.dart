@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imo/src/config/theme/cubit/theme_cubit.dart';
+
+import 'package:imo/src/feature/settings/theme/cubit/theme_cubit.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///

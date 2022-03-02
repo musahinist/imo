@@ -26,7 +26,8 @@ abstract class Auth extends Equatable {
 }
 
 class LoginEvent extends Auth {
-  const LoginEvent();
+  final bool hasToken;
+  const LoginEvent(this.hasToken);
 
   @override
   List<Object> get props => [];

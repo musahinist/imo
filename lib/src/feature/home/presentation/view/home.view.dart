@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:imo/src/feature/auth/bloc/login_bloc.dart';
 import 'package:imo/src/router/router.dart';
 import 'package:reorderable_grid/reorderable_grid.dart';
 
+import '../../../../config/style/typography.dart';
 import '../bloc/home_bloc.dart';
 
 class HomeView extends StatelessWidget {
@@ -47,9 +49,9 @@ class _HomeBodyState extends State<_HomeBody> {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: const Icon(Icons.add),
+            icon: const Icon(Icons.settings),
             onPressed: () {
-              context.read<LoginBloc>().add(const LogOutEvent());
+              context.router.navigate(const SettingsRoute());
             },
           )
         ],

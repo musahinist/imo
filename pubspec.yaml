@@ -17,9 +17,18 @@ dependencies:
   auto_route:
   flutter_bloc:
   equatable:
-
+  dio:
+  logger:
+  hive:
+  hive_flutter:
   # uı widgets
   reorderable_grid:
+
+  # util
+  flutter_screenutil:
+  flutter_svg:
+  google_fonts:
+  clipboard:
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +37,7 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   build_runner:
   auto_route_generator:
+  hive_generator:
 
 flutter:
   uses-material-design: true
@@ -37,4 +47,5 @@ flutter:
 
   assets:
     # Add assets from the images directory to the application.
-    - assets/images/
+    - assets/image/
+    - assets/svg/
