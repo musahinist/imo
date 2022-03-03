@@ -4,7 +4,6 @@ import 'package:imo/src/feature/shorten/data/model/short_link.dart';
 import 'package:imo/src/feature/shorten/domain/link_repository.dart';
 
 import '../../data/source/local/link_box.service.dart';
-import '../../data/source/remote/link_repository_impl.dart';
 
 part 'link_event.dart';
 part 'link_state.dart';

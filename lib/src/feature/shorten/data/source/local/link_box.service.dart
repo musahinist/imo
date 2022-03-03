@@ -1,4 +1,3 @@
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:imo/main.dart';
 import 'package:imo/src/feature/shorten/data/model/short_link.dart';
 
@@ -13,7 +12,7 @@ class LinkBox {
 
   List<ShortLink> getLinkList() {
     List<ShortLink> linkList = box.values.toList();
-    print(linkList);
+
     return linkList;
   }
 }

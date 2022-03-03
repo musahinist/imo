@@ -7,7 +7,7 @@ class IdeaFormView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Idea Form'),
+        title: const Text('Idea Form'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

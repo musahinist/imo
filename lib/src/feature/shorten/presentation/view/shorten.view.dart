@@ -65,8 +65,8 @@ class _ShortenViewBody extends StatelessWidget {
                     child: const Dialog(
                       elevation: 0,
                       backgroundColor: Colors.transparent,
-                      child: Center(
-                          child: const CircularProgressIndicator.adaptive()),
+                      child:
+                          Center(child: CircularProgressIndicator.adaptive()),
                     ),
                   ),
                 );
