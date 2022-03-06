@@ -1,9 +1,9 @@
-import 'package:google_fonts/google_fonts.dart';
-
-import 'typography.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import 'palette.dart';
+import 'typography.dart';
 
 class CreateTheme {
   const CreateTheme._();
@@ -45,19 +45,20 @@ class CreateTheme {
   );
 
   static final inputDecorationTheme = InputDecorationTheme(
-    fillColor: Colors.grey[100],
-    filled: true,
-    border: InputBorder.none,
-    contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-    enabledBorder: UnderlineInputBorder(
-      borderSide: BorderSide.none,
-      borderRadius: BorderRadius.circular(4),
-    ),
-    focusedBorder: UnderlineInputBorder(
-      borderSide: BorderSide.none,
-      borderRadius: BorderRadius.circular(4),
+    // fillColor: Colors.white,
+    // filled: true,
+    floatingLabelStyle: const TextStyle(
+      color: Palette.primaryColor,
     ),
     alignLabelWithHint: true,
+    border: const OutlineInputBorder(),
+
+    contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+    // enabledBorder: const OutlineInputBorder(),
+    focusedBorder: const OutlineInputBorder(
+      borderSide: BorderSide(color: Palette.primaryColor, width: 1),
+    ),
+    //
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(4),
       borderSide: const BorderSide(color: Colors.red, width: 1),
@@ -71,6 +72,8 @@ class CreateTheme {
 
   static final elevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
+      fixedSize: const Size(double.infinity, 48),
+
       primary: Palette.primaryColor,
       padding: const EdgeInsets.all(12),
       // shape: RoundedRectangleBorder(

@@ -6,14 +6,15 @@ import 'package:imo/src/feature/shorten/data/model/short_link.dart';
 import '../../../../../core/http/base_response.dart';
 import '../../../domain/link_repository.dart';
 
-class LinkRepositoryImpl extends BaseApi implements LinkRepository {
-  LinkRepositoryImpl();
+class LinkRepositoryImpl implements LinkRepository {
+  final BaseApi _client;
+  LinkRepositoryImpl() : _client = BaseApi();
 
   @override
   Future<ShortLink> shortenLink(String url) async {
     try {
       final Response response =
-          await get(innerPath: 'shorten', queryParams: {'url': url});
+          await _client.get(innerPath: 'shorten', queryParams: {'url': url});
       Res res = Res.fromJson(response.data);
       return ShortLink.fromJson(res.result);
     } catch (e) {
@@ -24,8 +25,8 @@ class LinkRepositoryImpl extends BaseApi implements LinkRepository {
   @override
   Future<LinkInfo> getInfo(String shortenedLink) async {
     try {
-      final Response response =
-          await get(innerPath: 'info', queryParams: {'code': shortenedLink});
+      final Response response = await _client
+          .get(innerPath: 'info', queryParams: {'code': shortenedLink});
       Res res = Res.fromJson(response.data);
       return LinkInfo.fromJson(res.result);
     } catch (e) {

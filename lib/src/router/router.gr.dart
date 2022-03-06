@@ -25,6 +25,18 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const LandingView());
     },
+    OnboardingRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const OnboardingView());
+    },
+    SignInRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const SignInView());
+    },
+    SignUpRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const SignUpView());
+    },
     ShortenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const ShortenView());
@@ -58,6 +70,9 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(SplashRoute.name, path: '/'),
         RouteConfig(LandingRoute.name, path: '/landing'),
+        RouteConfig(OnboardingRoute.name, path: '/onboarding'),
+        RouteConfig(SignInRoute.name, path: '/signIn'),
+        RouteConfig(SignUpRoute.name, path: '/signup'),
         RouteConfig(ShortenRoute.name, path: '/shorten'),
         RouteConfig(HomeRoute.name, path: '/'),
         RouteConfig(IdeaFormRoute.name, path: '/ideform'),
@@ -81,6 +96,30 @@ class LandingRoute extends PageRouteInfo<void> {
   const LandingRoute() : super(LandingRoute.name, path: '/landing');
 
   static const String name = 'LandingRoute';
+}
+
+/// generated route for
+/// [OnboardingView]
+class OnboardingRoute extends PageRouteInfo<void> {
+  const OnboardingRoute() : super(OnboardingRoute.name, path: '/onboarding');
+
+  static const String name = 'OnboardingRoute';
+}
+
+/// generated route for
+/// [SignInView]
+class SignInRoute extends PageRouteInfo<void> {
+  const SignInRoute() : super(SignInRoute.name, path: '/signIn');
+
+  static const String name = 'SignInRoute';
+}
+
+/// generated route for
+/// [SignUpView]
+class SignUpRoute extends PageRouteInfo<void> {
+  const SignUpRoute() : super(SignUpRoute.name, path: '/signup');
+
+  static const String name = 'SignUpRoute';
 }
 
 /// generated route for

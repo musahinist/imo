@@ -1,11 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:imo/src/config/style/typography.dart';
 
 import '../../../../config/constant/asset.dart';
-import '../../../auth/bloc/login_bloc.dart';
+import '../../../../config/style/typography.dart';
+import '../../../../router/router.dart';
 
 class LandingView extends StatelessWidget {
   const LandingView({Key? key}) : super(key: key);
@@ -38,7 +38,7 @@ class _LandingViewBody extends StatelessWidget {
                 width: .3.sw,
               ),
               SvgPicture.asset(
-                AssetSvg.illustration,
+                AssetSvg.chemistryLab,
                 width: 1.sw,
               ),
               Column(
@@ -60,7 +60,8 @@ class _LandingViewBody extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    context.read<LoginBloc>().add(const LoginEvent(true));
+                    context.router.navigate(const OnboardingRoute());
+                    //   context.read<LoginBloc>().add(const LoginEvent(true));
                   },
                   child: Text(
                     'Start'.toUpperCase(),

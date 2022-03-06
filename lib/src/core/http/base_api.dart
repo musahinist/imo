@@ -1,19 +1,54 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
-import 'package:imo/src/core/http/http_client.dart';
 
+import '../../config/constant/api.config.dart';
+import 'dio_logger.dart';
 import 'http_exception.dart';
+import 'package:flutter/foundation.dart';
 
-abstract class BaseApi {
+class BaseApi {
+  static String? lang;
+  static String? token;
+  late String path;
+  final String? baseUrl;
+  Dio? _client;
   BaseApi({
     this.path = '',
     this.baseUrl,
-  }) : _client = Client(
-          tag: path.toUpperCase(),
-          baseUrl: baseUrl,
-        ).client;
-  final String path;
-  final String? baseUrl;
-  late final Dio _client;
+  }) {
+    _client ??= Dio(
+      BaseOptions(
+        connectTimeout: 30000, // 30 seconds
+        receiveTimeout: 30000, // 30 seconds
+        responseType: ResponseType.json,
+        baseUrl: baseUrl ?? ApiConfig.baseUrl,
+        headers: <String, dynamic>{
+          HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+          HttpHeaders.acceptHeader: 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer ${token ?? ''}',
+          'Accept-Language': lang ?? 'tr',
+        },
+      ),
+    );
+    //if (kDebugMode)
+    _client!.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (RequestOptions options, handler) {
+          DioLogger().onSend(options);
+          return handler.next(options);
+        },
+        onResponse: (Response<dynamic> response, handler) {
+          DioLogger().onSuccess(response);
+          return handler.next(response);
+        },
+        onError: (DioError error, handler) {
+          DioLogger().onError(error);
+          return handler.next(error);
+        },
+      ),
+    );
+  }
 
   Future<Response> get({
     String innerPath = '',
@@ -21,7 +56,7 @@ abstract class BaseApi {
     Map<String, dynamic> queryParams = const <String, dynamic>{},
   }) async {
     try {
-      final Response response = await _client.get(
+      final Response response = await _client!.get(
         '/$path/$innerPath',
         queryParameters: queryParams,
         cancelToken: cancelToken,
@@ -42,7 +77,7 @@ abstract class BaseApi {
   }) async {
     assert(data != null);
     try {
-      final Response<dynamic> response = await _client.post(
+      final Response<dynamic> response = await _client!.post(
         '/$path/$innerPath',
         queryParameters: queryParameters,
         data: data,
@@ -63,7 +98,7 @@ abstract class BaseApi {
     Map<String, String> queryParameters = const <String, String>{},
   }) async {
     try {
-      final Response<dynamic> response = await _client.put(
+      final Response<dynamic> response = await _client!.put(
         '/$path/$innerPath',
         data: data,
         queryParameters: queryParameters,
@@ -83,7 +118,7 @@ abstract class BaseApi {
     Map<String, String> queryParameters = const <String, String>{},
   }) async {
     try {
-      final Response<dynamic> response = await _client.patch(
+      final Response<dynamic> response = await _client!.patch(
         '/$path/$innerPath',
         data: data,
         queryParameters: queryParameters,
@@ -102,7 +137,7 @@ abstract class BaseApi {
     Map<String, String> queryParameters = const <String, String>{},
   }) async {
     try {
-      final Response<dynamic> response = await _client.delete(
+      final Response<dynamic> response = await _client!.delete(
         '/$path/$innerPath',
         queryParameters: queryParameters,
         cancelToken: cancelToken,
@@ -116,7 +151,7 @@ abstract class BaseApi {
 
   void throwIfNoSuccess(Response<dynamic> response) {
     if (response.statusCode! < 200 || response.statusCode! > 299) {
-      throw DataException(response);
+      throw DataException(response.data);
     }
   }
 }

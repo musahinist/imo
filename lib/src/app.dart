@@ -4,10 +4,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:imo/src/config/style/app_theme.dart';
-import 'package:imo/src/feature/auth/bloc/login_bloc.dart';
+import 'package:imo/src/feature/auth/presentation/bloc/auth/auth_bloc.dart';
+
 import 'package:imo/src/router/router.dart';
 
-import 'feature/auth/bloc/login_bloc.dart';
+import 'feature/auth/presentation/bloc/login/login_bloc.dart';
 import 'feature/settings/theme/cubit/theme_cubit.dart';
 
 class MyApp extends StatelessWidget {
@@ -20,22 +21,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Hive.box('shortLinkBox').clear();
-    return BlocListener<LoginBloc, LoginState>(
-      listener: (context, state) {
-        if (state.authState == AuthState.authenticating ||
-            state.authState == AuthState.initial) {
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, auth) {
+        if (auth.state == AuthStatus.authenticating ||
+            auth.state == AuthStatus.initial) {
           appRouter.pushAndPopUntil(
             const SplashRoute(),
             predicate: (route) => false,
           );
         }
-        if (state.authState == AuthState.authenticated) {
+        if (auth.state == AuthStatus.authenticated) {
           appRouter.pushAndPopUntil(
             const ShortenRoute(),
             predicate: (route) => false,
           );
         }
-        if (state.authState == AuthState.unauthenticated) {
+        if (auth.state == AuthStatus.unauthenticated) {
           appRouter.pushAndPopUntil(
             const LandingRoute(),
             predicate: (route) => false,

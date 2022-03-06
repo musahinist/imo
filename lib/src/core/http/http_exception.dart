@@ -7,7 +7,7 @@ class DataException implements Exception {
   dynamic response;
   @override
   String toString() {
-    return 'HttpException{response: $response}';
+    return 'DataException{response: $response}';
   }
 
   static String handleError(dynamic error) {

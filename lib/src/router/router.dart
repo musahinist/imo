@@ -1,16 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:imo/src/feature/home/presentation/view/home.view.dart';
-import 'package:imo/src/feature/sample_feature/sample_item.dart';
-import 'package:imo/src/feature/shorten/presentation/view/shorten.view.dart';
 
+import '../feature/auth/presentation/view/sign_in.view.dart';
+import '../feature/auth/presentation/view/sign_up.view.dart';
+import '../feature/home/presentation/view/home.view.dart';
 import '../feature/home/presentation/view/idea_form.view.dart';
-import '../feature/landing/presentation/view/landing.view.dart';
+import '../feature/onboarding/presentation/view/landing.view.dart';
+import '../feature/onboarding/presentation/view/onboarding.view.dart';
+import '../feature/onboarding/presentation/view/splash.view.dart';
+import '../feature/sample_feature/sample_item.dart';
 import '../feature/sample_feature/sample_item_details_view.dart';
 import '../feature/sample_feature/sample_item_list_view.dart';
-
 import '../feature/settings/settings_view.dart';
-import '../feature/splash/splah.view.dart';
+import '../feature/shorten/presentation/view/shorten.view.dart';
 
 part 'router.gr.dart';
 
@@ -24,6 +26,18 @@ part 'router.gr.dart';
     AutoRoute(
       path: LandingView.routeName,
       page: LandingView,
+    ),
+    AutoRoute(
+      path: OnboardingView.routeName,
+      page: OnboardingView,
+    ),
+    AutoRoute(
+      path: SignInView.routeName,
+      page: SignInView,
+    ),
+    AutoRoute(
+      path: SignUpView.routeName,
+      page: SignUpView,
     ),
     AutoRoute(
       path: ShortenView.routeName,
