@@ -14,7 +14,12 @@ class LoadingButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: isLoading ? null : onPressed,
+      onPressed: isLoading
+          ? null
+          : () {
+              onPressed();
+              FocusScope.of(context).unfocus();
+            },
       child: isLoading
           ? const SizedBox(
               width: 24,

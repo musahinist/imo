@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imo/src/feature/auth/presentation/bloc/auth/auth_bloc.dart';
 
+import '../bloc/auth/auth_bloc.dart';
 import '../bloc/login/login_bloc.dart';
 import '../widget/loading_button.widget.dart';
 
@@ -12,7 +12,11 @@ class SignInView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => LoginBloc(context.read(), context.read()),
-      child: const _SignInBody(),
+      child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: const _SignInBody()),
     );
   }
 }
@@ -27,13 +31,13 @@ class _SignInBody extends StatelessWidget {
     return Scaffold(
       body: BlocListener<LoginBloc, LoginState>(
         listener: (context, login) {
-          if (login.authState == AuthStatus.signInError) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                const SnackBar(content: Text('Authentication Failure')),
-              );
-          }
+          // if (login.authState == AuthStatus.signInError) {
+          //   ScaffoldMessenger.of(context)
+          //     ..hideCurrentSnackBar()
+          //     ..showSnackBar(
+          //       const SnackBar(content: Text('Authentication Failure')),
+          //     );
+          // }
         },
         child: SafeArea(
           child: Column(

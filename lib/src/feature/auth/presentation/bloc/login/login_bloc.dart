@@ -1,8 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
-import 'package:imo/src/feature/auth/domain/auth_repository.dart';
+import 'package:flutter/material.dart';
+import 'package:rxdart/transformers.dart';
 
+import '../../../../../app.dart';
+import '../../../../../core/http/http_exception.dart';
+import '../../../domain/auth_repository.dart';
 import '../auth/auth_bloc.dart';
 
 part 'login_event.dart';
@@ -12,10 +15,20 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthRepository _authRepository;
   final AuthBloc _authBloc;
   LoginBloc(this._authRepository, this._authBloc) : super(const LoginState()) {
-    on<LoginEmailChanged>(_onUsernameChanged);
-    on<LoginPasswordChanged>(_onPasswordChanged);
+    on<LoginEmailChanged>(
+      _onUsernameChanged,
+      transformer: debounce(const Duration(milliseconds: 300)),
+    );
+    on<LoginPasswordChanged>(
+      _onPasswordChanged,
+      transformer: debounce(const Duration(milliseconds: 300)),
+    );
     on<LoginSubmitted>(_onSubmitted);
   }
+  EventTransformer<T> debounce<T>(Duration duration) {
+    return (events, mapper) => events.debounceTime(duration).flatMap(mapper);
+  }
+
   void _onUsernameChanged(
     LoginEmailChanged event,
     Emitter<LoginState> emit,
@@ -39,12 +52,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     try {
       emit(state.copyWith(authState: AuthStatus.authenticating));
-      await Future.delayed(const Duration(seconds: 2));
       await _authRepository.login(state.email, state.password);
       emit(state.copyWith(authState: AuthStatus.signInSuccess));
       _authBloc.add(const AuthChangedEvent(state: AuthStatus.authenticated));
     } catch (e) {
       emit(state.copyWith(authState: AuthStatus.signInError));
+      scaffoldMessengerKey.currentState!
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(
+            content: Text(DataException.handleError(e)),
+          ),
+        );
     }
     // if (state.status.isValidated) {
     //   emit(state.copyWith(status: FormzStatus.submissionInProgress));

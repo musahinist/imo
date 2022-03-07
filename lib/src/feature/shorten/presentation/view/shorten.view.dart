@@ -1,15 +1,15 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:imo/src/config/style/palette.dart';
-import 'package:imo/src/feature/shorten/data/model/short_link.dart';
-import 'package:imo/src/feature/shorten/presentation/bloc/link_bloc.dart';
-import 'package:clipboard/clipboard.dart';
-import '../../../../../main.dart';
 import '../../../../config/constant/asset.dart';
+import '../../../../config/style/palette.dart';
 import '../../../../config/style/typography.dart';
+import '../../data/model/short_link.dart';
+import '../../data/source/local/link_box.service.dart';
+import '../bloc/link_bloc.dart';
 
 class ShortenView extends StatelessWidget {
   const ShortenView({Key? key}) : super(key: key);
@@ -112,7 +112,7 @@ class _BottomBarWidgetState extends State<_BottomBarWidget> {
 
   @override
   void dispose() {
-    box.close();
+    context.read<LinkBox>().closeBox();
     _controller.dispose();
     super.dispose();
   }
@@ -325,7 +325,7 @@ class OnboardingBody extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: SvgPicture.asset(
-              AssetSvg.illustration,
+              AssetSvg.chemistryLab,
               width: .9.sw,
             ),
           ),

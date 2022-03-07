@@ -24,7 +24,9 @@ class DataException implements Exception {
           errorDescription = error.message;
           break;
         case DioErrorType.response:
-          errorDescription = error.message;
+          errorDescription = error.response!.data['message'] is List
+              ? (error.response!.data['message'] as List).join('\n')
+              : error.response!.data['message'];
           break;
         case DioErrorType.cancel:
           errorDescription = error.message;

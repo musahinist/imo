@@ -1,14 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imo/src/router/router.dart';
 import 'package:reorderable_grid/reorderable_grid.dart';
 
+import '../../../../router/router.dart';
 import '../bloc/home_bloc.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
-  static const routeName = '/';
+  static const routeName = '/home';
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomeBloc>(

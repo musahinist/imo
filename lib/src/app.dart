@@ -3,21 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:imo/src/config/style/app_theme.dart';
-import 'package:imo/src/feature/auth/presentation/bloc/auth/auth_bloc.dart';
 
-import 'package:imo/src/router/router.dart';
-
-import 'feature/auth/presentation/bloc/login/login_bloc.dart';
+import 'config/style/app_theme.dart';
+import 'feature/auth/presentation/bloc/auth/auth_bloc.dart';
 import 'feature/settings/theme/cubit/theme_cubit.dart';
+import 'router/router.dart';
+
+final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+final appRouter = AppRouter();
 
 class MyApp extends StatelessWidget {
   const MyApp({
     Key? key,
-    required this.appRouter,
   }) : super(key: key);
 
-  final AppRouter appRouter;
   @override
   Widget build(BuildContext context) {
     // Hive.box('shortLinkBox').clear();
@@ -31,10 +30,7 @@ class MyApp extends StatelessWidget {
           );
         }
         if (auth.state == AuthStatus.authenticated) {
-          appRouter.pushAndPopUntil(
-            const ShortenRoute(),
-            predicate: (route) => false,
-          );
+          appRouter.replaceAll([const HomeRoute()]);
         }
         if (auth.state == AuthStatus.unauthenticated) {
           appRouter.pushAndPopUntil(
@@ -50,6 +46,7 @@ class MyApp extends StatelessWidget {
             minTextAdapt: true,
             builder: () {
               return MaterialApp.router(
+                scaffoldMessengerKey: scaffoldMessengerKey,
                 debugShowCheckedModeBanner: false,
                 localizationsDelegates: const [
                   AppLocalizations.delegate,

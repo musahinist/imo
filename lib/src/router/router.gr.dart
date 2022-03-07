@@ -74,7 +74,7 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(SignInRoute.name, path: '/signIn'),
         RouteConfig(SignUpRoute.name, path: '/signup'),
         RouteConfig(ShortenRoute.name, path: '/shorten'),
-        RouteConfig(HomeRoute.name, path: '/'),
+        RouteConfig(HomeRoute.name, path: '/home'),
         RouteConfig(IdeaFormRoute.name, path: '/ideform'),
         RouteConfig(SampleItemListRoute.name, path: '/sample'),
         RouteConfig(SettingsRoute.name, path: '/settings'),
@@ -133,7 +133,7 @@ class ShortenRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [HomeView]
 class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute() : super(HomeRoute.name, path: '/');
+  const HomeRoute() : super(HomeRoute.name, path: '/home');
 
   static const String name = 'HomeRoute';
 }

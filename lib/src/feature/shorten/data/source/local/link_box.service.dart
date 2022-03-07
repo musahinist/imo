@@ -1,7 +1,9 @@
-import 'package:imo/main.dart';
-import 'package:imo/src/feature/shorten/data/model/short_link.dart';
+import 'package:hive/hive.dart';
+
+import '../../model/short_link.dart';
 
 class LinkBox {
+  final Box<ShortLink> box = Hive.box('shortLinkBox');
   addLink(ShortLink link) {
     box.add(link);
   }
@@ -14,5 +16,9 @@ class LinkBox {
     List<ShortLink> linkList = box.values.toList();
 
     return linkList;
+  }
+
+  closeBox() {
+    box.close();
   }
 }

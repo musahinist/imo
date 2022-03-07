@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 import '../../config/constant/api.config.dart';
 import 'dio_logger.dart';
 import 'http_exception.dart';
-import 'package:flutter/foundation.dart';
 
 class BaseApi {
   static String? lang;
@@ -151,7 +150,7 @@ class BaseApi {
 
   void throwIfNoSuccess(Response<dynamic> response) {
     if (response.statusCode! < 200 || response.statusCode! > 299) {
-      throw DataException(response.data);
+      throw DataException(response.data['message']);
     }
   }
 }

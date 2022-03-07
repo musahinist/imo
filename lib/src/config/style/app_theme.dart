@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'palette.dart';
@@ -99,6 +100,7 @@ class CreateTheme {
     fontFamily: baseTextStyle.fontFamily,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     brightness: Brightness.light,
+    primarySwatch: Palette.appPalette,
     primaryColor: Palette.primaryColor,
     primaryColorDark: Palette.primaryColorDark,
     primaryColorLight: Palette.primaryColorLight,
@@ -107,7 +109,7 @@ class CreateTheme {
     //     primary: Colors.black, brightness: Brightness.light),
     disabledColor: Colors.grey,
     dividerColor: Palette.dividerColor.withOpacity(0.5),
-    accentColor: Palette.primaryColor,
+    //  accentColor: Palette.primaryColor,
     backgroundColor: Colors.white,
     hintColor: Colors.grey,
     appBarTheme: appBarTheme,
@@ -147,11 +149,11 @@ class CreateTheme {
     //     primary: Colors.white, brightness: Brightness.light),
     disabledColor: Palette.disabledColor,
     dividerColor: Palette.dividerColor.withOpacity(0.5),
-    accentColor: Palette.primaryColor,
+    // accentColor: Palette.primaryColor,
     backgroundColor: Colors.white,
     hintColor: Colors.grey,
     appBarTheme: appBarTheme.copyWith(
-        brightness: Brightness.dark, color: Colors.grey[900]),
+        color: Colors.grey[900], systemOverlayStyle: SystemUiOverlayStyle.dark),
     textTheme: textTheme,
     inputDecorationTheme:
         inputDecorationTheme.copyWith(fillColor: Colors.grey[50]),
