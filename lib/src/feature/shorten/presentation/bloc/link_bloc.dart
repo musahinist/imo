@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:imo/src/feature/shorten/data/model/short_link.dart';
-import 'package:imo/src/feature/shorten/domain/link_repository.dart';
+import '../../data/model/short_link.dart';
+import '../../domain/link_repository.dart';
 
 import '../../data/source/local/link_box.service.dart';
 

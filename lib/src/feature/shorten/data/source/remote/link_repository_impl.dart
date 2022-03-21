@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:imo/src/core/http/base_api.dart';
-import 'package:imo/src/feature/shorten/data/model/link_info.dart';
-import 'package:imo/src/feature/shorten/data/model/short_link.dart';
+import '../../../../../core/http/base_api.dart';
+import '../../model/link_info.dart';
+import '../../model/short_link.dart';
 
 import '../../../../../core/http/base_response.dart';
 import '../../../domain/link_repository.dart';

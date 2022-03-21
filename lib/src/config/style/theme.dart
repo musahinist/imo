@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'palette.dart';
 import 'typography.dart';
 
-class CreateTheme {
-  const CreateTheme._();
+class AppTheme {
+  const AppTheme._();
 
   static const appBarTheme = AppBarTheme(
     elevation: 0.0,

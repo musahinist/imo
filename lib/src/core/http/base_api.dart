@@ -1,53 +1,17 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 
-import '../../config/constant/api.config.dart';
-import 'dio_logger.dart';
+import 'dio_client.dart';
 import 'http_exception.dart';
 
 class BaseApi {
-  static String? lang;
-  static String? token;
-  late String path;
-  final String? baseUrl;
-  Dio? _client;
+  final String? path;
+
   BaseApi({
     this.path = '',
-    this.baseUrl,
-  }) {
-    _client ??= Dio(
-      BaseOptions(
-        connectTimeout: 30000, // 30 seconds
-        receiveTimeout: 30000, // 30 seconds
-        responseType: ResponseType.json,
-        baseUrl: baseUrl ?? ApiConfig.baseUrl,
-        headers: <String, dynamic>{
-          HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-          HttpHeaders.acceptHeader: 'application/json; charset=UTF-8',
-          'Authorization': 'Bearer ${token ?? ''}',
-          'Accept-Language': lang ?? 'tr',
-        },
-      ),
-    );
-    //if (kDebugMode)
-    _client!.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (RequestOptions options, handler) {
-          DioLogger().onSend(options);
-          return handler.next(options);
-        },
-        onResponse: (Response<dynamic> response, handler) {
-          DioLogger().onSuccess(response);
-          return handler.next(response);
-        },
-        onError: (DioError error, handler) {
-          DioLogger().onError(error);
-          return handler.next(error);
-        },
-      ),
-    );
-  }
+    baseUrl,
+  }) : _client = DioClient(baseUrl: baseUrl).client;
+
+  final Dio _client;
 
   Future<Response> get({
     String innerPath = '',
@@ -55,7 +19,7 @@ class BaseApi {
     Map<String, dynamic> queryParams = const <String, dynamic>{},
   }) async {
     try {
-      final Response response = await _client!.get(
+      final Response response = await _client.get(
         '/$path/$innerPath',
         queryParameters: queryParams,
         cancelToken: cancelToken,
@@ -76,7 +40,7 @@ class BaseApi {
   }) async {
     assert(data != null);
     try {
-      final Response<dynamic> response = await _client!.post(
+      final Response<dynamic> response = await _client.post(
         '/$path/$innerPath',
         queryParameters: queryParameters,
         data: data,
@@ -97,7 +61,7 @@ class BaseApi {
     Map<String, String> queryParameters = const <String, String>{},
   }) async {
     try {
-      final Response<dynamic> response = await _client!.put(
+      final Response<dynamic> response = await _client.put(
         '/$path/$innerPath',
         data: data,
         queryParameters: queryParameters,
@@ -117,7 +81,7 @@ class BaseApi {
     Map<String, String> queryParameters = const <String, String>{},
   }) async {
     try {
-      final Response<dynamic> response = await _client!.patch(
+      final Response<dynamic> response = await _client.patch(
         '/$path/$innerPath',
         data: data,
         queryParameters: queryParameters,
@@ -136,7 +100,7 @@ class BaseApi {
     Map<String, String> queryParameters = const <String, String>{},
   }) async {
     try {
-      final Response<dynamic> response = await _client!.delete(
+      final Response<dynamic> response = await _client.delete(
         '/$path/$innerPath',
         queryParameters: queryParameters,
         cancelToken: cancelToken,
@@ -154,3 +118,35 @@ class BaseApi {
     }
   }
 }
+
+//  _client ??= Dio(
+//       BaseOptions(
+//         connectTimeout: 30000, // 30 seconds
+//         receiveTimeout: 30000, // 30 seconds
+//         responseType: ResponseType.json,
+//         baseUrl: baseUrl ?? ApiConfig.baseUrl,
+//         headers: <String, dynamic>{
+//           HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+//           HttpHeaders.acceptHeader: 'application/json; charset=UTF-8',
+//           'Authorization': 'Bearer $token',
+//           'Accept-Language': lang ?? 'tr',
+//         },
+//       ),
+//     )..interceptors.add(
+//         InterceptorsWrapper(
+//           onRequest: (RequestOptions options, handler) {
+//             // options.headers['Authorization'] = 'Bearer $token';
+//             // options.headers['Language'] = lang;
+//             DioLogger().onSend(options);
+//             return handler.next(options);
+//           },
+//           onResponse: (Response<dynamic> response, handler) {
+//             DioLogger().onSuccess(response);
+//             return handler.next(response);
+//           },
+//           onError: (DioError error, handler) {
+//             DioLogger().onError(error);
+//             return handler.next(error);
+//           },
+//         ),
+//       );

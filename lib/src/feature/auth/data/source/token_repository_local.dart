@@ -9,8 +9,8 @@ class TokenRepositoryLocal {
     await box.put('token', token);
   }
 
-  Future<String> getToken() async {
-    return await box.get('token');
+  String getToken() {
+    return box.get('token');
   }
 
   Future<void> deleteToken() async {

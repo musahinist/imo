@@ -1,10 +1,9 @@
 import '../../../../core/http/base_api.dart';
 import '../../domain/auth_repository.dart';
-import 'token_repository_local.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final BaseApi _client;
-  final TokenRepositoryLocal _local = TokenRepositoryLocal();
+
   AuthRepositoryImpl() : _client = BaseApi(path: 'auth');
 
   @override
@@ -14,8 +13,7 @@ class AuthRepositoryImpl implements AuthRepository {
         innerPath: 'signin',
         data: {'email': email, 'password': pass},
       );
-      _local.saveToken(response.data['access_token']);
-      BaseApi.token = response.data['access_token'];
+
       return response.data['access_token'];
     } catch (e) {
       rethrow;

@@ -16,8 +16,10 @@ enum AuthStatus {
 
 class AuthState extends Equatable {
   final AuthStatus state;
+  final Map? user;
   const AuthState({
     this.state = AuthStatus.initial,
+    this.user,
   });
 
   @override
@@ -25,9 +27,11 @@ class AuthState extends Equatable {
 
   AuthState copyWith({
     AuthStatus? state,
+    Map? user,
   }) {
     return AuthState(
       state: state ?? this.state,
+      user: user ?? this.user,
     );
   }
 }

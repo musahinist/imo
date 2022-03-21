@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 import '../feature/auth/presentation/view/sign_in.view.dart';
 import '../feature/auth/presentation/view/sign_up.view.dart';
+import '../feature/home/data/model/task.dart';
 import '../feature/home/presentation/view/home.view.dart';
 import '../feature/home/presentation/view/idea_form.view.dart';
+import '../feature/home/presentation/view/task_detail.view.dart';
 import '../feature/onboarding/presentation/view/landing.view.dart';
 import '../feature/onboarding/presentation/view/onboarding.view.dart';
 import '../feature/onboarding/presentation/view/splash.view.dart';
@@ -50,6 +52,10 @@ part 'router.gr.dart';
     AutoRoute(
       path: IdeaFormView.routeName,
       page: IdeaFormView,
+    ),
+    AutoRoute(
+      path: TaskDetailView.routeName,
+      page: TaskDetailView,
     ),
     AutoRoute(
       path: SampleItemListView.routeName,

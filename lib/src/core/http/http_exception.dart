@@ -1,4 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+
+import '../../app.dart';
 
 class DataException implements Exception {
   DataException(
@@ -39,8 +42,15 @@ class DataException implements Exception {
     } else if (error is TypeError) {
       errorDescription = error.toString();
     } else {
-      errorDescription = error.response;
+      errorDescription = error.toString();
     }
+    scaffoldMessengerKey.currentState!
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text(DataException.handleError(errorDescription)),
+        ),
+      );
     return errorDescription;
   }
 }

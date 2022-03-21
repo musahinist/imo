@@ -5,6 +5,7 @@ import 'package:rxdart/transformers.dart';
 
 import '../../../../../app.dart';
 import '../../../../../core/http/http_exception.dart';
+import '../../../data/source/token_repository_local.dart';
 import '../../../domain/auth_repository.dart';
 import '../auth/auth_bloc.dart';
 
@@ -13,8 +14,10 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthRepository _authRepository;
+  final TokenRepositoryLocal _local;
   final AuthBloc _authBloc;
-  LoginBloc(this._authRepository, this._authBloc) : super(const LoginState()) {
+  LoginBloc(this._authRepository, this._local, this._authBloc)
+      : super(const LoginState()) {
     on<LoginEmailChanged>(
       _onUsernameChanged,
       transformer: debounce(const Duration(milliseconds: 300)),
@@ -52,9 +55,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     try {
       emit(state.copyWith(authState: AuthStatus.authenticating));
-      await _authRepository.login(state.email, state.password);
+      final String token =
+          await _authRepository.login(state.email, state.password);
+
+      _local.saveToken(token);
+      _authBloc.add(const AuthChangedEvent());
       emit(state.copyWith(authState: AuthStatus.signInSuccess));
-      _authBloc.add(const AuthChangedEvent(state: AuthStatus.authenticated));
     } catch (e) {
       emit(state.copyWith(authState: AuthStatus.signInError));
       scaffoldMessengerKey.currentState!

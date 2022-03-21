@@ -34,7 +34,7 @@ class DioLogger {
 🟢↩ Res Data: 🧶 ${response.data} 🧶
 🟢↩ Res Path: ${response.requestOptions.path.toUpperCase()} [${response.requestOptions.method}]<- ${response.requestOptions.baseUrl}${response.requestOptions.path} 
 🟢↩ Res StatusCode: ${response.statusCode} 
-🟢↩ Res StatusCode: ${response.statusMessage}⚡✨✨''',
+🟢↩ Res StatusMessage: ${response.statusMessage}⚡✨✨''',
     );
   }
 

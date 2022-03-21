@@ -49,6 +49,12 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const IdeaFormView());
     },
+    TaskDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<TaskDetailRouteArgs>();
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: TaskDetailView(key: args.key, task: args.task));
+    },
     SampleItemListRoute.name: (routeData) {
       final args = routeData.argsAs<SampleItemListRouteArgs>(
           orElse: () => const SampleItemListRouteArgs());
@@ -76,6 +82,7 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(ShortenRoute.name, path: '/shorten'),
         RouteConfig(HomeRoute.name, path: '/home'),
         RouteConfig(IdeaFormRoute.name, path: '/ideform'),
+        RouteConfig(TaskDetailRoute.name, path: '/task-detail'),
         RouteConfig(SampleItemListRoute.name, path: '/sample'),
         RouteConfig(SettingsRoute.name, path: '/settings'),
         RouteConfig(SampleItemDetailsRoute.name, path: '/sample_item')
@@ -144,6 +151,30 @@ class IdeaFormRoute extends PageRouteInfo<void> {
   const IdeaFormRoute() : super(IdeaFormRoute.name, path: '/ideform');
 
   static const String name = 'IdeaFormRoute';
+}
+
+/// generated route for
+/// [TaskDetailView]
+class TaskDetailRoute extends PageRouteInfo<TaskDetailRouteArgs> {
+  TaskDetailRoute({Key? key, required Task task})
+      : super(TaskDetailRoute.name,
+            path: '/task-detail',
+            args: TaskDetailRouteArgs(key: key, task: task));
+
+  static const String name = 'TaskDetailRoute';
+}
+
+class TaskDetailRouteArgs {
+  const TaskDetailRouteArgs({this.key, required this.task});
+
+  final Key? key;
+
+  final Task task;
+
+  @override
+  String toString() {
+    return 'TaskDetailRouteArgs{key: $key, task: $task}';
+  }
 }
 
 /// generated route for

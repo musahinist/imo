@@ -15,6 +15,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   auto_route:
+  go_router:
   flutter_bloc:
   rxdart:
   equatable:

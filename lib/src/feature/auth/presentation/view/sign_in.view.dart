@@ -11,7 +11,8 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginBloc(context.read(), context.read()),
+      create: (context) =>
+          LoginBloc(context.read(), context.read(), context.read()),
       child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();

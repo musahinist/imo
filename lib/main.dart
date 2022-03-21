@@ -18,17 +18,7 @@ Future<void> main() async {
       runApp(
         MultiRepositoryProvider(
           providers: await DI.init(),
-          child: MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                create: (context) => ThemeCubit(),
-              ),
-              BlocProvider(
-                create: (context) => AuthBloc()..add(const AuthChangedEvent()),
-              ),
-            ],
-            child: const MyApp(),
-          ),
+          child: const MyApp(),
         ),
       )
     },

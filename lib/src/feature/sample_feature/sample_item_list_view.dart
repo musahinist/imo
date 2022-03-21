@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../settings/settings_view.dart';
 import 'sample_item.dart';
 import 'sample_item_details_view.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// Displays a list of SampleItems.
 class SampleItemListView extends StatelessWidget {
