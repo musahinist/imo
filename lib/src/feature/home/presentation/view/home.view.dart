@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imo/src/feature/home/presentation/cubit/task_cubit.dart';
+import '../cubit/task_cubit.dart';
 import 'package:reorderable_grid/reorderable_grid.dart';
 
 import '../../../../router/router.dart';

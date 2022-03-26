@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:imo/src/feature/home/domain/task_repostory.dart';
+
+import '../../domain/task_repostory.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
