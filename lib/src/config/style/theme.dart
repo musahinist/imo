@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'palette.dart';
-import 'typography.dart';
+import 'font.dart';
 
 class AppTheme {
   const AppTheme._();
@@ -32,17 +32,17 @@ class AppTheme {
       fontSize: 60,
       fontWeight: FontWeight.bold,
     ),
-    headline3: MyTypography.xHugeBoldText,
-    headline4: MyTypography.hugeSemiBoldText,
-    headline5: MyTypography.xXlargeSemiBoldText,
-    headline6: MyTypography.xlargeSemiBoldText,
-    subtitle1: MyTypography.largeSemiBoldText,
-    subtitle2: MyTypography.largeRegularText,
-    bodyText1: MyTypography.mediumRegularText,
-    bodyText2: MyTypography.smallRegularText,
-    button: MyTypography.mediumMediumText,
-    caption: MyTypography.smallRegularText,
-    overline: MyTypography.xSmallRegularText,
+    headline3: Font.xHugeBoldText,
+    headline4: Font.hugeSemiBoldText,
+    headline5: Font.xXlargeSemiBoldText,
+    headline6: Font.xlargeSemiBoldText,
+    subtitle1: Font.largeSemiBoldText,
+    subtitle2: Font.largeRegularText,
+    bodyText1: Font.mediumRegularText,
+    bodyText2: Font.smallRegularText,
+    button: Font.mediumMediumText,
+    caption: Font.smallRegularText,
+    overline: Font.xSmallRegularText,
   );
 
   static final inputDecorationTheme = InputDecorationTheme(
@@ -91,8 +91,7 @@ class AppTheme {
         borderRadius: BorderRadius.circular(10),
       ),
       side: const BorderSide(color: Palette.primaryColor),
-      textStyle:
-          MyTypography.mediumMediumText.copyWith(color: Palette.primaryColor),
+      textStyle: Font.mediumMediumText.copyWith(color: Palette.primaryColor),
     ),
   );
 

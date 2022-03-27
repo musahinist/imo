@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../config/constant/asset.dart';
 import '../../../../config/style/palette.dart';
-import '../../../../config/style/typography.dart';
+import '../../../../config/style/font.dart';
 import '../../data/model/short_link.dart';
 import '../../data/source/local/link_box.service.dart';
 import '../bloc/link_bloc.dart';
@@ -176,7 +176,7 @@ class _BottomBarWidgetState extends State<_BottomBarWidget> {
                   },
                   child: Text(
                     'Shorten It !'.toUpperCase(),
-                    style: MyTypography.xlargeSemiBoldText,
+                    style: Font.xlargeSemiBoldText,
                   ),
                 ),
               ],
@@ -204,7 +204,7 @@ class _LinkHistoryBodyState extends State<LinkHistoryBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text("Link History", style: MyTypography.xlargeSemiBoldText),
+        const Text("Link History", style: Font.xlargeSemiBoldText),
         Expanded(
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),
@@ -256,7 +256,7 @@ class CardListTile extends StatelessWidget {
                     child: Text(item.originalLink!,
                         overflow: TextOverflow.ellipsis,
                         softWrap: true,
-                        style: MyTypography.xlargeSemiBoldText.copyWith(
+                        style: Font.xlargeSemiBoldText.copyWith(
                           color: const Color.fromRGBO(54, 41, 88, 1),
                         )),
                   ),
@@ -277,7 +277,7 @@ class CardListTile extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Text(item.shortLink!,
                   overflow: TextOverflow.ellipsis,
-                  style: MyTypography.xlargeSemiBoldText.copyWith(
+                  style: Font.xlargeSemiBoldText.copyWith(
                     color: Palette.primaryColor,
                   )),
             ),
@@ -295,7 +295,7 @@ class CardListTile extends StatelessWidget {
                 },
                 child: Text(
                   isCoppied ? 'COPIED !' : 'COPY',
-                  style: MyTypography.xlargeSemiBoldText,
+                  style: Font.xlargeSemiBoldText,
                 ),
               ),
             ),
@@ -334,13 +334,13 @@ class OnboardingBody extends StatelessWidget {
             children: [
               const Text(
                 "Let's get started!.",
-                style: MyTypography.xlargeSemiBoldText,
+                style: Font.xlargeSemiBoldText,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
               Text(
                 'Paste your first link into \nthe field to shorten it.',
-                style: MyTypography.xlargeRegularText,
+                style: Font.xlargeRegularText,
                 textAlign: TextAlign.center,
               ),
             ],

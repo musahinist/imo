@@ -1,5 +1,5 @@
-class Spacing {
-  const Spacing._();
+class Space {
+  const Space._();
   static const double xxs = 4.0;
   static const double xs = 8.0;
   static const double s = 12.0;

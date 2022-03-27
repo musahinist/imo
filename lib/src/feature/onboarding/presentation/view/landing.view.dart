@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../config/constant/asset.dart';
-import '../../../../config/style/typography.dart';
+import '../../../../config/style/font.dart';
 import '../../../../router/router.dart';
 
 class LandingView extends StatelessWidget {
@@ -45,13 +45,13 @@ class _LandingViewBody extends StatelessWidget {
                 children: [
                   const Text(
                     "Let's get started!.",
-                    style: MyTypography.xlargeSemiBoldText,
+                    style: Font.xlargeSemiBoldText,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 16),
                   Text(
                     'Paste your first link into \nthe field to shorten it.',
-                    style: MyTypography.xlargeRegularText,
+                    style: Font.xlargeRegularText,
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -65,7 +65,7 @@ class _LandingViewBody extends StatelessWidget {
                   },
                   child: Text(
                     'Start'.toUpperCase(),
-                    style: MyTypography.xlargeSemiBoldText,
+                    style: Font.xlargeSemiBoldText,
                   ),
                 ),
               ),

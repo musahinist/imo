@@ -12,8 +12,8 @@ const double xSmallText = 10;
 
 //const String fontName = 'MaisonNeue';
 
-class MyTypography {
-  const MyTypography._();
+class Font {
+  const Font._();
 
   /// todo xSmall size
   static const TextStyle xSmallLightText = TextStyle(
