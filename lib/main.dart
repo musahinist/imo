@@ -6,8 +6,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'src/app.dart';
 import 'src/core/bloc/bloc_observer.dart';
 import 'src/core/di/injection_container.dart';
-import 'src/feature/auth/presentation/bloc/auth/auth_bloc.dart';
-import 'src/feature/settings/theme/cubit/theme_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

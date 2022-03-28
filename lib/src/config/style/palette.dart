@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 class Palette {
@@ -54,4 +55,34 @@ class Palette {
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: [Colors.transparent, Colors.black26]);
+  static get randomColor {
+    final Random random = Random();
+    return Color.fromARGB(
+        255, random.nextInt(255), random.nextInt(255), random.nextInt(255));
+    // return Color(random.nextInt(0xFFFFFFFF));
+  }
+
+  static get randomDarkColor {
+    final Random random = Random();
+    return Color.fromARGB(
+        255, random.nextInt(100), random.nextInt(100), random.nextInt(100));
+    // return Color(random.nextInt(0xFFFFFFFF)& 0x7F7F7F);
+  }
+
+  static get randomLightColor {
+    final Random random = Random();
+    return Color.fromARGB(255, 155 + random.nextInt(100),
+        155 + random.nextInt(100), 155 + random.nextInt(100));
+  }
+
+  static get randomMaterialColor {
+    return Colors.primaries[Random().nextInt(Colors.primaries.length)];
+  }
+
+  static Color fromHex(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
+  }
 }
