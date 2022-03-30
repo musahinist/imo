@@ -1,12 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../cubit/task_cubit.dart';
 import 'package:reorderable_grid/reorderable_grid.dart';
 
 import '../../../../router/router.dart';
 import '../../../auth/presentation/bloc/auth/auth_bloc.dart';
-import '../bloc/home_bloc.dart';
+import '../cubit/task_cubit.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
