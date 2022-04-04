@@ -55,27 +55,27 @@ class Palette {
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: [Colors.transparent, Colors.black26]);
-  static get randomColor {
+  static Color get randomColor {
     final Random random = Random();
     return Color.fromARGB(
         255, random.nextInt(255), random.nextInt(255), random.nextInt(255));
     // return Color(random.nextInt(0xFFFFFFFF));
   }
 
-  static get randomDarkColor {
+  static Color get randomDarkColor {
     final Random random = Random();
     return Color.fromARGB(
-        255, random.nextInt(100), random.nextInt(100), random.nextInt(100));
+        255, random.nextInt(155), random.nextInt(155), random.nextInt(155));
     // return Color(random.nextInt(0xFFFFFFFF)& 0x7F7F7F);
   }
 
-  static get randomLightColor {
+  static Color get randomLightColor {
     final Random random = Random();
     return Color.fromARGB(255, 155 + random.nextInt(100),
         155 + random.nextInt(100), 155 + random.nextInt(100));
   }
 
-  static get randomMaterialColor {
+  static Color get randomMaterialColor {
     return Colors.primaries[Random().nextInt(Colors.primaries.length)];
   }
 
