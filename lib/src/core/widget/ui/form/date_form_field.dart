@@ -6,15 +6,27 @@ import 'package:intl/intl.dart';
 
 import '../../util/show_overlay.dart';
 
-class DateFormField extends StatelessWidget {
-  const DateFormField({
-    Key? key,
-    required this.controller,
-    this.labelText = 'Date',
-  }) : super(key: key);
+class DateFormField extends StatefulWidget {
+  const DateFormField(
+      {Key? key, this.labelText = 'Date', required this.onChanged})
+      : super(key: key);
 
-  final TextEditingController controller;
   final String labelText;
+  final ValueSetter<String?> onChanged;
+
+  @override
+  State<DateFormField> createState() => _DateFormFieldState();
+}
+
+class _DateFormFieldState extends State<DateFormField> {
+  final TextEditingController controller = TextEditingController();
+  @override
+  void dispose() {
+    controller.clear();
+    controller.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +35,7 @@ class DateFormField extends StatelessWidget {
       keyboardType: TextInputType.number,
       inputFormatters: [DateTextFormatter()],
       decoration: InputDecoration(
-        labelText: labelText,
+        labelText: widget.labelText,
         hintText: "MM/dd/yyyy",
         suffixIcon: IconButton(
           icon: const Icon(Icons.calendar_month),
@@ -31,10 +43,19 @@ class DateFormField extends StatelessWidget {
             DateTime? date = await Show.cupertinoDatePickerModal(context);
             if (date != null) {
               controller.text = DateFormat("MM/dd/yyyy").format(date);
+              widget.onChanged.call(controller.text);
             }
           },
         ),
       ),
+      onChanged: (String value) {
+        widget.onChanged.call(controller.text);
+        // if (value.isEmpty) {
+        //   widget.onChanged?.call(null);
+        // } else {
+        //   widget.onChanged?.call(DateTime.tryParse(value)!);
+        // }
+      },
     );
   }
 }
