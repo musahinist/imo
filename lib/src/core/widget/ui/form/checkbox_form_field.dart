@@ -8,10 +8,10 @@ class CheckBoxFormField extends StatefulWidget {
   final String labelText;
 
   @override
-  State<CheckBoxFormField> createState() => _CheckBoxInputFieldState();
+  State<CheckBoxFormField> createState() => _CheckBoxFormFieldState();
 }
 
-class _CheckBoxInputFieldState extends State<CheckBoxFormField> {
+class _CheckBoxFormFieldState extends State<CheckBoxFormField> {
   bool isChecked = false;
   TextEditingController controller = TextEditingController();
   @override
