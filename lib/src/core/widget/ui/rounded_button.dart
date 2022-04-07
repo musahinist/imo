@@ -20,10 +20,10 @@ class RoundedButton extends StatelessWidget {
           elevation: 15.0,
         ),
         child: Padding(
-          padding: EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(15.0),
           child: Text(
             title,
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
           ),
         ),
       ),
