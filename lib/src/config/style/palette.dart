@@ -85,4 +85,8 @@ class Palette {
     buffer.write(hexString.replaceFirst('#', ''));
     return Color(int.parse(buffer.toString(), radix: 16));
   }
+
+  static Color get randomSemiTransColor {
+    return Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(.5);
+  }
 }
