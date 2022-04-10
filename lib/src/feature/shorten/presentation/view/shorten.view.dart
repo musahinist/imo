@@ -319,13 +319,13 @@ class OnboardingBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SvgPicture.asset(
-            AssetSvg.logo,
+            Asset.svg.logo,
             width: .3.sw,
           ),
           Align(
             alignment: Alignment.centerRight,
             child: SvgPicture.asset(
-              AssetSvg.chemistryLab,
+              Asset.svg.chemistryLab,
               width: .9.sw,
             ),
           ),

@@ -46,17 +46,17 @@ class _OnboardingViewState extends State<OnboardingView>
                   padding: const EdgeInsets.only(top: 36.0, bottom: 64),
                   child: TabBarView(
                     controller: _tabController,
-                    children: const [
+                    children: [
                       _Page(
-                        svg: AssetSvg.chemistryLab,
+                        svg: Asset.svg.chemistryLab,
                         content: 'Well Designed Template',
                       ),
                       _Page(
-                        svg: AssetSvg.chemistryLab,
+                        svg: Asset.svg.chemistryLab,
                         content: 'East to Export and Share',
                       ),
                       _Page(
-                        svg: AssetSvg.chemistryLab,
+                        svg: Asset.svg.chemistryLab,
                         content: 'Easy to Create and Edit',
                       ),
                     ],

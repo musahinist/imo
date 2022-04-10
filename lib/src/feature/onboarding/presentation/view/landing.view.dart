@@ -34,11 +34,11 @@ class _LandingViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SvgPicture.asset(
-                AssetSvg.logo,
+                Asset.svg.logo,
                 width: .3.sw,
               ),
               SvgPicture.asset(
-                AssetSvg.chemistryLab,
+                Asset.svg.chemistryLab,
                 width: 1.sw,
               ),
               Column(
