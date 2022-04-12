@@ -114,4 +114,11 @@ class Palette {
     int gray = (299 * red + 587 * green + 114 * blue) ~/ 1000;
     return gray > darknessThreshold;
   }
+
+  static Color getContrastTextColor(Color color,
+      [double darknessThreshold = 128]) {
+    return isDarkFromGrayScale(color, darknessThreshold)
+        ? Colors.black
+        : Colors.white;
+  }
 }
