@@ -89,4 +89,29 @@ class Palette {
   static Color get randomSemiTransColor {
     return Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(.5);
   }
+
+  static Color toGrayScale(Color color) {
+    int red = color.red;
+    int green = color.green;
+    int blue = color.blue;
+    int alpha = color.alpha;
+    int gray = (299 * red + 587 * green + 114 * blue) ~/ 1000;
+    return Color.fromARGB(alpha, gray, gray, gray);
+  }
+
+  ///specified by the W3C.
+  static bool isDark(Color color, [double darknessThreshold = 0.179]) {
+    final luminance = color.computeLuminance();
+    return luminance < darknessThreshold;
+  }
+
+  static bool isDarkFromGrayScale(Color color,
+      [double darknessThreshold = 186]) {
+    int red = color.red;
+    int green = color.green;
+    int blue = color.blue;
+    // int alpha = color.alpha;
+    int gray = (299 * red + 587 * green + 114 * blue) ~/ 1000;
+    return gray > darknessThreshold;
+  }
 }
