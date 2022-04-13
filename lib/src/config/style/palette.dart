@@ -99,12 +99,13 @@ class Palette {
     return Color.fromARGB(alpha, gray, gray, gray);
   }
 
-  ///specified by the W3C.
+  ///specified by the W3C but expensive to calculate
   static bool isDark(Color color, [double darknessThreshold = 0.179]) {
     final luminance = color.computeLuminance();
     return luminance < darknessThreshold;
   }
 
+  ///cheaper wesion
   static bool isDarkFromGrayScale(Color color,
       [double darknessThreshold = 186]) {
     int red = color.red;
@@ -115,6 +116,7 @@ class Palette {
     return gray > darknessThreshold;
   }
 
+//TODO: covert to extension
   static Color getContrastTextColor(Color color,
       [double darknessThreshold = 128]) {
     return isDarkFromGrayScale(color, darknessThreshold)
