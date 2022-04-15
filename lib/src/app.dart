@@ -5,9 +5,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'config/style/theme.dart';
+import 'core/bloc/setting/theme/theme_cubit.dart';
 import 'feature/auth/presentation/bloc/auth/auth_bloc.dart';
 import 'feature/home/presentation/cubit/task_cubit.dart';
-import 'feature/settings/theme/cubit/theme_cubit.dart';
+
 import 'router/router.dart';
 
 final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -50,12 +51,12 @@ class MyApp extends StatelessWidget {
             appRouter.replaceAll([const LandingRoute()]);
           }
         },
-        child: BlocBuilder<ThemeCubit, ThemeState>(
-          builder: (context, theme) {
+        child: BlocBuilder<ThemeCubit, ThemeMode>(
+          builder: (context, themeMode) {
             return ScreenUtilInit(
               designSize: const Size(360, 690),
               minTextAdapt: true,
-              builder: () {
+              builder: (_) {
                 return MaterialApp.router(
                   scaffoldMessengerKey: scaffoldMessengerKey,
                   debugShowCheckedModeBanner: false,
@@ -70,7 +71,7 @@ class MyApp extends StatelessWidget {
                       AppLocalizations.of(context)!.appTitle,
                   theme: AppTheme.lightTheme,
                   darkTheme: AppTheme.darkTheme,
-                  themeMode: theme.themeMode,
+                  themeMode: themeMode,
                   routerDelegate: appRouter.delegate(),
                   routeInformationParser: appRouter.defaultRouteParser(),
                 );

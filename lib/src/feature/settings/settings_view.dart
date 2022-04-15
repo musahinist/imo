@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../core/bloc/setting/theme/theme_cubit.dart';
 import '../auth/presentation/bloc/auth/auth_bloc.dart';
-import 'theme/cubit/theme_cubit.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
@@ -24,11 +24,11 @@ class SettingsView extends StatelessWidget {
         children: [
           ListTile(
             title: const Text('Theme'),
-            trailing: BlocBuilder<ThemeCubit, ThemeState>(
-              builder: (context, state) {
+            trailing: BlocBuilder<ThemeCubit, ThemeMode>(
+              builder: (context, themeMode) {
                 return DropdownButton<ThemeMode>(
                   // Read the selected themeMode from the controller
-                  value: context.read<ThemeCubit>().state.themeMode,
+                  value: themeMode,
                   // Call the updateThemeMode method any time the user selects a theme.
                   onChanged: (themeMode) {
                     context.read<ThemeCubit>().changeThemeMode(themeMode!);
