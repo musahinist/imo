@@ -47,4 +47,35 @@ class Show {
 
     return date;
   }
+
+  static void bottomSheet(BuildContext context, Widget widget) {
+    showModalBottomSheet(
+      context: context,
+      enableDrag: true,
+      elevation: 16,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        ),
+      ),
+      builder: (context) => Container(
+        //   height: 200,
+        decoration: BoxDecoration(
+          color: Colors.blueGrey[100],
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(16),
+            topRight: Radius.circular(16),
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.more_horiz, size: 36, color: Colors.grey),
+            widget
+          ],
+        ),
+      ),
+    );
+  }
 }

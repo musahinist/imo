@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../../../utils/helper/reactive.dart';
+
 class ChildLock extends StatefulWidget {
   const ChildLock({
     Key? key,
@@ -23,7 +25,7 @@ class _ChildLockState extends State<ChildLock>
     with SingleTickerProviderStateMixin {
   final LayerLink _layerLink = LayerLink();
   OverlayEntry? _overlayEntry;
-
+  final Debounce _debounce = Debounce(const Duration(milliseconds: 700));
   late AnimationController _controller;
   @override
   void initState() {
@@ -34,76 +36,81 @@ class _ChildLockState extends State<ChildLock>
     );
   }
 
-  void buildPieProgress() {
-    final overlay = Overlay.of(context);
-
+  void resetOverlay() {
     if (_overlayEntry != null) {
       _controller.reset();
       _overlayEntry!.remove();
       _overlayEntry = null;
-    } else {
-      _controller.forward();
-      _controller.addListener(() {
-        if (_controller.isCompleted) {
-          overlay!.setState(() {});
+    }
+  }
+
+  void buildOverlay() {
+    final overlay = Overlay.of(context);
+
+    _controller.forward();
+    _controller.addListener(() {
+      if (_controller.isCompleted) {
+        overlay!.setState(() {});
+        _debounce(() {
+          resetOverlay();
           widget.onUnLock();
-          print('unlock');
-        }
-      });
-      _overlayEntry = OverlayEntry(builder: (_) {
-        return Center(
-          child: CompositedTransformFollower(
-            targetAnchor: widget.targetAnchor,
-            followerAnchor: widget.followerAnchor,
-            link: _layerLink,
-            child: FloatingActionButton(
-              mini: true,
-              backgroundColor: Colors.white,
-              onPressed: null,
-              child: SizedBox(
-                width: 32,
-                height: 32,
-                child: Stack(
-                  alignment: Alignment.center,
-                  fit: StackFit.expand,
-                  children: [
-                    AnimatedBuilder(
-                      animation: _controller,
-                      builder: (context, child) {
-                        return CustomPaint(
-                          painter: PiePainter(
-                            color: Colors.amber,
-                            value: _controller.value * 2 * pi,
+        });
+      }
+    });
+    _overlayEntry = OverlayEntry(builder: (_) {
+      return Center(
+        child: CompositedTransformFollower(
+          targetAnchor: widget.targetAnchor,
+          followerAnchor: widget.followerAnchor,
+          link: _layerLink,
+          child: FloatingActionButton(
+            mini: true,
+            backgroundColor: Colors.white,
+            onPressed: null,
+            child: SizedBox(
+              width: 32,
+              height: 32,
+              child: Stack(
+                alignment: Alignment.center,
+                fit: StackFit.expand,
+                children: [
+                  AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, child) {
+                      return CustomPaint(
+                        painter: PiePainter(
+                          color: Colors.amber,
+                          value: _controller.value * 2 * pi,
+                        ),
+                      );
+                    },
+                  ),
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 500),
+                    child: _controller.isCompleted
+                        ? const Icon(
+                            Icons.lock_open,
+                            size: 16,
+                          )
+                        : const Icon(
+                            Icons.lock,
+                            size: 16,
                           ),
-                        );
-                      },
-                    ),
-                    AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 500),
-                      child: _controller.isCompleted
-                          ? const Icon(
-                              Icons.lock_open,
-                              size: 16,
-                            )
-                          : const Icon(
-                              Icons.lock,
-                              size: 16,
-                            ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
-        );
-      });
-      overlay!.insert(_overlayEntry!);
-    }
+        ),
+      );
+    });
+    overlay!.insert(_overlayEntry!);
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _overlayEntry!.dispose();
     super.dispose();
   }
 
@@ -113,10 +120,10 @@ class _ChildLockState extends State<ChildLock>
       link: _layerLink,
       child: Listener(
         onPointerDown: (_) {
-          buildPieProgress();
+          buildOverlay();
         },
         onPointerUp: (_) {
-          buildPieProgress();
+          resetOverlay();
         },
         child: widget.child,
       ),
