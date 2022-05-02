@@ -30,7 +30,7 @@ dependencies:
   reorderable_grid: ^1.0.3
 
   # util
-  flutter_screenutil: ^5.4.0
+  flutter_screenutil: ^5.5.1
   flutter_svg: ^1.0.3
   google_fonts: ^2.3.2
   clipboard: ^0.1.3

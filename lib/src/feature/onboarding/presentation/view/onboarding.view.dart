@@ -1,10 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../config/constant/asset.dart';
-import '../../../../router/router.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({Key? key}) : super(key: key);
@@ -35,10 +33,31 @@ class _OnboardingViewState extends State<OnboardingView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.indigo[900],
+        // title: const Text('Sign In'),
+        elevation: 0,
+        actions: [
+          TextButton.icon(
+            style: TextButton.styleFrom(
+              primary: Colors.white,
+            ),
+            label: const Text('Skip'),
+            icon: const Icon(Icons.arrow_forward),
+            onPressed: () {
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (_) => const SignInView(),
+              //   ),
+              // );
+            },
+          ),
+        ],
+      ),
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          const _Background(),
+          const CurvedBackground(),
           Column(
             children: [
               Expanded(
@@ -48,16 +67,16 @@ class _OnboardingViewState extends State<OnboardingView>
                     controller: _tabController,
                     children: [
                       _Page(
-                        svg: Asset.svg.chemistryLab,
+                        asset: Asset.svg.chemistryLab,
+                        content: 'Easy to Create and Edit',
+                      ),
+                      _Page(
+                        asset: Asset.svg.chemistryLab,
                         content: 'Well Designed Template',
                       ),
                       _Page(
-                        svg: Asset.svg.chemistryLab,
+                        asset: Asset.svg.chemistryLab,
                         content: 'East to Export and Share',
-                      ),
-                      _Page(
-                        svg: Asset.svg.chemistryLab,
-                        content: 'Easy to Create and Edit',
                       ),
                     ],
                   ),
@@ -66,7 +85,6 @@ class _OnboardingViewState extends State<OnboardingView>
               _Pagination(tabController: _tabController),
             ],
           ),
-          const _SkipButton(),
         ],
       ),
     );
@@ -77,76 +95,32 @@ class _Page extends StatelessWidget {
   const _Page({
     Key? key,
     required this.content,
-    required this.svg,
+    required this.asset,
   }) : super(key: key);
   final String content;
-  final String svg;
+  final String asset;
   @override
   Widget build(BuildContext context) {
+    String type = asset.split('.').last;
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        SvgPicture.asset(
-          svg,
-          width: 1.sw,
-          height: .4.sh,
-        ),
+        // if(type=='riv')
+        //   SizedBox(
+        //       // height: .5.sh,
+        //       // width: 1.sw,
+        //       child: RiveAnimation.asset(
+        //         asset,
+        //         fit: BoxFit.fitHeight,
+        //       )),
+        if (type == 'svg')
+          SvgPicture.asset(
+            asset,
+            width: 1.sw,
+            height: .4.sh,
+          ),
         Center(child: Text(content)),
       ],
-    );
-  }
-}
-
-class _Background extends StatelessWidget {
-  const _Background({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: Transform.scale(
-        scale: 1.4,
-        child: Container(
-          height: 240,
-          transform: Matrix4.translationValues(0, -40, 0),
-          decoration: BoxDecoration(
-            color: Colors.indigo[900],
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.elliptical(MediaQuery.of(context).size.width, 160),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _SkipButton extends StatelessWidget {
-  const _SkipButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Align(
-        alignment: Alignment.topRight,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: TextButton.icon(
-            style: TextButton.styleFrom(
-              primary: Colors.white,
-            ),
-            label: const Text('Skip'),
-            icon: const Icon(Icons.arrow_forward),
-            onPressed: () {
-              context.router.replaceAll([const SignInRoute()]);
-            },
-          ),
-        ),
-      ),
     );
   }
 }
@@ -194,6 +168,34 @@ class _Pagination extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CurvedBackground extends StatelessWidget {
+  const CurvedBackground({
+    Key? key,
+    this.height = 240,
+  }) : super(key: key);
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Transform.scale(
+        scale: 1.4,
+        child: Container(
+          height: height,
+          transform: Matrix4.translationValues(0, -40, 0),
+          decoration: BoxDecoration(
+            color: Colors.indigo[900],
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.elliptical(MediaQuery.of(context).size.width, 160),
+            ),
+          ),
+        ),
       ),
     );
   }
