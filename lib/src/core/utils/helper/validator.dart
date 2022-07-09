@@ -349,4 +349,6 @@ class RegexPattern {
   /// Minimum character: 8
   static String passwordHardAllowedWhitespace =
       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[\S ]{8,}$';
+
+  static String decimalPrice = r'^\d+\.?\d{0,2}';
 }

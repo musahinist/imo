@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:full_charge_map/feature/terms/term_conditions.dart';
+import 'package:imo/src/feature/terms/term_conditions.dart';
 
 import 'privacy_policy.dart';
 
