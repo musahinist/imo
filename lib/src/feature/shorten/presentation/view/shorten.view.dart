@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../config/constant/asset.dart';
-import '../../../../config/style/palette.dart';
-import '../../../../config/style/font.dart';
+import '../../../../core/style/palette.dart';
+import '../../../../core/style/typography.dart';
+import '../../../../product/config/constant/asset_constant.dart';
 import '../../data/model/short_link.dart';
 import '../../data/source/local/link_box.service.dart';
 import '../bloc/link_bloc.dart';
@@ -176,7 +176,7 @@ class _BottomBarWidgetState extends State<_BottomBarWidget> {
                   },
                   child: Text(
                     'Shorten It !'.toUpperCase(),
-                    style: Font.xlargeSemiBoldText,
+                    style: MyTypography.xlargeSemiBoldText,
                   ),
                 ),
               ],
@@ -204,7 +204,7 @@ class _LinkHistoryBodyState extends State<LinkHistoryBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text("Link History", style: Font.xlargeSemiBoldText),
+        const Text("Link History", style: MyTypography.xlargeSemiBoldText),
         Expanded(
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),
@@ -256,7 +256,7 @@ class CardListTile extends StatelessWidget {
                     child: Text(item.originalLink!,
                         overflow: TextOverflow.ellipsis,
                         softWrap: true,
-                        style: Font.xlargeSemiBoldText.copyWith(
+                        style: MyTypography.xlargeSemiBoldText.copyWith(
                           color: const Color.fromRGBO(54, 41, 88, 1),
                         )),
                   ),
@@ -277,7 +277,7 @@ class CardListTile extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Text(item.shortLink!,
                   overflow: TextOverflow.ellipsis,
-                  style: Font.xlargeSemiBoldText.copyWith(
+                  style: MyTypography.xlargeSemiBoldText.copyWith(
                     color: Palette.primaryColor,
                   )),
             ),
@@ -285,7 +285,7 @@ class CardListTile extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: isCoppied
+                  backgroundColor: isCoppied
                       ? const Color.fromRGBO(54, 41, 88, 1)
                       : Palette.primaryColor,
                 ),
@@ -295,7 +295,7 @@ class CardListTile extends StatelessWidget {
                 },
                 child: Text(
                   isCoppied ? 'COPIED !' : 'COPY',
-                  style: Font.xlargeSemiBoldText,
+                  style: MyTypography.xlargeSemiBoldText,
                 ),
               ),
             ),
@@ -319,13 +319,13 @@ class OnboardingBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SvgPicture.asset(
-            Asset.svg.logo,
+            AssetConstant.logo,
             width: .3.sw,
           ),
           Align(
             alignment: Alignment.centerRight,
             child: SvgPicture.asset(
-              Asset.svg.chemistryLab,
+              AssetConstant.chemistryLab,
               width: .9.sw,
             ),
           ),
@@ -334,13 +334,13 @@ class OnboardingBody extends StatelessWidget {
             children: [
               const Text(
                 "Let's get started!.",
-                style: Font.xlargeSemiBoldText,
+                style: MyTypography.xlargeSemiBoldText,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
               Text(
                 'Paste your first link into \nthe field to shorten it.',
-                style: Font.xlargeRegularText,
+                style: MyTypography.xlargeRegularText,
                 textAlign: TextAlign.center,
               ),
             ],

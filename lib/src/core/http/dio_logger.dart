@@ -24,7 +24,8 @@ class DioLogger {
 🔄  Req Path: ${options.path.toUpperCase()} [${options.method}]-> ${options.baseUrl}${options.path}
 🔄  Req Token: ${options.headers['Authorization']}
 🔄  Req QueryParams: ${options.queryParameters}  
-🔄  Req Data: ${options.data}''',
+🔄  Req Data: ${options.data}
+      ''',
     );
   }
 
@@ -34,7 +35,8 @@ class DioLogger {
 🟢↩ Res Data: 🧶 ${response.data} 🧶
 🟢↩ Res Path: ${response.requestOptions.path.toUpperCase()} [${response.requestOptions.method}]<- ${response.requestOptions.baseUrl}${response.requestOptions.path} 
 🟢↩ Res StatusCode: ${response.statusCode} 
-🟢↩ Res StatusMessage: ${response.statusMessage}⚡✨✨''',
+🟢↩ Res StatusMessage: ${response.statusMessage}⚡✨✨
+      ''',
     );
   }
 
@@ -45,7 +47,8 @@ class DioLogger {
 🔴 Err Type : ${error.type} 
 🔴 Err StatusCode: ${error.response!.statusCode} 
 🔴 Err StatusMessage : ${error.response!.statusMessage} 
-🔴 Err ResponseData: ${error.response!.data}''',
+🔴 Err ResponseData: ${error.response!.data}
+      ''',
     );
   }
 }

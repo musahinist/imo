@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
-import '../../config/constant/api.config.dart';
+import '../constant/api_config.dart';
 import 'dio_logger.dart';
 
 class DioClient {

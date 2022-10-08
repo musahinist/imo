@@ -1,24 +1,26 @@
 import 'package:hive/hive.dart';
 
+import '../../../../core/enum/hive_box.dart';
+
 class TokenRepositoryLocal {
   TokenRepositoryLocal();
 
-  final box = Hive.box('tokenBox');
+  final box = Hive.box(HiveBox.token.key);
 
   Future<void> saveToken(String token) async {
-    await box.put('token', token);
+    await box.put(HiveBox.token.key, token);
   }
 
   String getToken() {
-    return box.get('token');
+    return box.get(HiveBox.token.key);
   }
 
   Future<void> deleteToken() async {
-    await box.delete('token');
+    await box.delete(HiveBox.token.key);
   }
 
   bool hasToken() {
-    return box.containsKey('token');
+    return box.containsKey(HiveBox.token.key);
   }
 
   Future<void> clear() async {
