@@ -5,13 +5,13 @@ import 'http_exception.dart';
 
 class BaseApi {
   final String? path;
+  final String? baseUrl;
+  final Dio _client;
 
   BaseApi({
     this.path = '',
-    baseUrl,
+    this.baseUrl,
   }) : _client = DioClient(baseUrl: baseUrl).client;
-
-  final Dio _client;
 
   Future<Response> get({
     String innerPath = '',

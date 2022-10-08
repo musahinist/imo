@@ -1,0 +1,15 @@
+{
+    "@@locale": "tr",
+    "counterAppBarTitle": "Counter",
+    "@counterAppBarTitle": {
+        "description": "Counter Page appBar baslik"
+    },
+    "page1": "Sayfa 1",
+    "@page1": {
+        "description": "Sayfa 1"
+    },
+    "page2": "Sayfa 2",
+    "@page2": {
+        "description": "Sayfa 2"
+    }
+}

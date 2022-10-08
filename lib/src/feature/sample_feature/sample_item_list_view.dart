@@ -21,7 +21,7 @@ class SampleItemListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.listTitle),
+        title: Text(AppLocalizations.of(context).listTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imo/src/core/widget/ui/form/password_form_field.dart';
 
 import '../bloc/auth/auth_bloc.dart';
 import '../bloc/login/login_bloc.dart';
@@ -58,10 +57,13 @@ class _SignInBody extends StatelessWidget {
                         keyboardType: TextInputType.emailAddress,
                       ),
                       const SizedBox(height: 16),
-                      PasswordFormField(
+                      TextFormField(
                         onChanged: (pass) => context
                             .read<LoginBloc>()
                             .add(LoginPasswordChanged(pass)),
+                        decoration:
+                            const InputDecoration(labelText: 'Passeord'),
+                        keyboardType: TextInputType.visiblePassword,
                       ),
                       const SizedBox(height: 16),
                       BlocBuilder<LoginBloc, LoginState>(

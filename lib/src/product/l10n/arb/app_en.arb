@@ -1,0 +1,19 @@
+{
+    "@@locale": "en",
+    "appTitle": "App Title",
+    "@appTitle": {
+        "description": "Text shown in the AppBar of the Counter Page"
+    },
+    "listTitle": "List Title",
+    "@listTitle": {
+        "description": "Text shown in the AppBar of the Counter Page"
+    },
+    "page1": "Page 1",
+    "@page1": {
+        "description": "Page 1"
+    },
+    "page2": "Page 2",
+    "@page2": {
+        "description": "Page 2"
+    }
+}

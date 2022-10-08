@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../config/constant/asset.dart';
-import '../../../../config/style/font.dart';
-import '../../../../router/router.dart';
+import '../../../../core/style/typography.dart';
+import '../../../../product/config/constant/asset_constant.dart';
+import '../../../../product/router/router.dart';
 
 class LandingView extends StatelessWidget {
   const LandingView({Key? key}) : super(key: key);
@@ -34,24 +34,24 @@ class _LandingViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SvgPicture.asset(
-                Asset.svg.logo,
+                AssetConstant.logo,
                 width: .3.sw,
               ),
               SvgPicture.asset(
-                Asset.svg.chemistryLab,
+                AssetConstant.chemistryLab,
                 width: 1.sw,
               ),
               Column(
                 children: [
                   const Text(
                     "Let's get started!.",
-                    style: Font.xlargeSemiBoldText,
+                    style: MyTypography.xlargeSemiBoldText,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 16),
                   Text(
                     'Paste your first link into \nthe field to shorten it.',
-                    style: Font.xlargeRegularText,
+                    style: MyTypography.xlargeRegularText,
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -65,7 +65,7 @@ class _LandingViewBody extends StatelessWidget {
                   },
                   child: Text(
                     'Start'.toUpperCase(),
-                    style: Font.xlargeSemiBoldText,
+                    style: MyTypography.xlargeSemiBoldText,
                   ),
                 ),
               ),

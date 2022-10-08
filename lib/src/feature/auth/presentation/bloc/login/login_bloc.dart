@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:imo/src/core/enum/duration_enum.dart';
 import 'package:rxdart/transformers.dart';
 
-import '../../../../../app.dart';
 import '../../../../../core/http/http_exception.dart';
+import '../../../../../product/app.dart';
 import '../../../data/source/token_repository_local.dart';
 import '../../../domain/auth_repository.dart';
 import '../auth/auth_bloc.dart';
@@ -20,12 +21,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       : super(const LoginState()) {
     on<LoginEmailChanged>(
       _onUsernameChanged,
-      transformer: debounce(const Duration(milliseconds: 300)),
+      transformer: debounce(DurationEnum.xs.value),
     );
+
     on<LoginPasswordChanged>(
       _onPasswordChanged,
-      transformer: debounce(const Duration(milliseconds: 300)),
+      transformer: debounce(DurationEnum.xs.value),
     );
+
     on<LoginSubmitted>(_onSubmitted);
   }
   EventTransformer<T> debounce<T>(Duration duration) {
